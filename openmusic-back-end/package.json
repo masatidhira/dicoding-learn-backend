@@ -1,0 +1,24 @@
+{
+  "name": "openmusic-back-end",
+  "version": "1.0.0",
+  "description": "Back-end for Open Music App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "open-music",
+    "backend"
+  ],
+  "author": "masatidhira",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2",
+    "dotenv": "^16.3.1",
+    "joi": "^17.9.2"
+  }
+}
