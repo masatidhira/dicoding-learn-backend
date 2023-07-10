@@ -1,10 +1,13 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable require-jsdoc */
+const autoBind = require('auto-bind');
 
 class SongsHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
+
+    autoBind(this);
   }
 
   catchError(error, h) {
@@ -27,7 +30,7 @@ class SongsHandler {
 
   async postSongHandler(request, h) {
     try {
-      // TODO Validate Song Payload
+      this._validator.validateSongPayload(request.payload);
 
       const { title, year, genre, performer, duration, albumId } =
         request.payload;
@@ -48,7 +51,7 @@ class SongsHandler {
       response.code(201);
       return response;
     } catch (error) {
-      return catchError(error, h);
+      return this.catchError(error, h);
     }
   }
 
@@ -62,7 +65,7 @@ class SongsHandler {
         },
       };
     } catch (error) {
-      return catchError(error, h);
+      return this.catchError(error, h);
     }
   }
 
@@ -75,13 +78,13 @@ class SongsHandler {
         data: { song },
       };
     } catch (error) {
-      return catchError(error, h);
+      return this.catchError(error, h);
     }
   }
 
   async updateSongByIdHandler(request, h) {
     try {
-      // TODO Validate Song payload
+      this._validator.validateSongPayload(request.payload);
 
       const { id } = request.params;
 
@@ -92,7 +95,7 @@ class SongsHandler {
         message: `Berhasil mengubah lagu dengan id: ${id}`,
       };
     } catch (error) {
-      return catchError(error, h);
+      return this.catchError(error, h);
     }
   }
 
@@ -107,7 +110,7 @@ class SongsHandler {
         message: `Berhasil menghapus Lagu dengan id: ${id}`,
       };
     } catch (error) {
-      return catchError(error, h);
+      return this.catchError(error, h);
     }
   }
 }

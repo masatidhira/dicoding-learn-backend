@@ -1,15 +1,36 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable require-jsdoc */
+const autoBind = require('auto-bind');
 
 class AlbumsHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
+
+    autoBind(this);
+  }
+
+  catchError(error, h) {
+    if (error instanceof ClientError) {
+      const response = h.response({
+        status: 'fail',
+        message: error.message,
+      });
+      response.code(error.statusCode);
+      return response;
+    }
+
+    const response = h.response({
+      status: 'error',
+      message: 'Server Error',
+    });
+    response.code(500);
+    return response;
   }
 
   async postAlbumHandler(request, h) {
     try {
-      // TODO Validate Album Payload
+      this._validator.validateAlbumPayload(request.payload);
 
       const { name, year } = request.payload;
 
@@ -25,21 +46,7 @@ class AlbumsHandler {
       response.code(201);
       return response;
     } catch (error) {
-      if (error instanceof ClientError) {
-        const response = h.response({
-          status: 'fail',
-          message: error.message,
-        });
-        response.code(error.statusCode);
-        return response;
-      }
-
-      const response = h.response({
-        status: 'error',
-        message: 'Server Error',
-      });
-      response.code(500);
-      return response;
+      return this.catchError(error, h);
     }
   }
 
@@ -52,27 +59,13 @@ class AlbumsHandler {
         data: { album },
       };
     } catch (error) {
-      if (error instanceof ClientError) {
-        const response = h.response({
-          status: 'fail',
-          message: error.message,
-        });
-        response.code(error.statusCode);
-        return response;
-      }
-
-      const response = h.response({
-        status: 'error',
-        message: 'Server Error',
-      });
-      response.code(500);
-      return response;
+      return this.catchError(error, h);
     }
   }
 
   async updateAlbumByIdHandler(request, h) {
     try {
-      // TODO Validate Album payload
+      this._validator.validateAlbumPayload(request.payload);
 
       const { id } = request.params;
 
@@ -83,21 +76,7 @@ class AlbumsHandler {
         message: `Berhasil mengubah Album dengan id: ${id}`,
       };
     } catch (error) {
-      if (error instanceof ClientError) {
-        const response = h.response({
-          status: 'fail',
-          message: error.message,
-        });
-        response.code(error.statusCode);
-        return response;
-      }
-
-      const response = h.response({
-        status: 'error',
-        message: 'Server Error',
-      });
-      response.code(500);
-      return response;
+      return this.catchError(error, h);
     }
   }
 
@@ -112,21 +91,7 @@ class AlbumsHandler {
         message: `Berhasil menghapus Album dengan id: ${id}`,
       };
     } catch (error) {
-      if (error instanceof ClientError) {
-        const response = h.response({
-          status: 'fail',
-          message: error.message,
-        });
-        response.code(error.statusCode);
-        return response;
-      }
-
-      const response = h.response({
-        status: 'error',
-        message: 'Server Error',
-      });
-      response.code(500);
-      return response;
+      return this.catchError(error, h);
     }
   }
 }
