@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-spacing */
-import AlbumPayloadSchema from './schema';
-import InvariantError from '../../exceptions/InvariantError';
+import AlbumPayloadSchema from './schema.js';
+import InvariantError from '../../exceptions/InvariantError.js';
 
 const AlbumValidator = {
   validateAlbumPayload: (payload) => {

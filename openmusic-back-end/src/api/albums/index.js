@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-spacing */
-import AlbumsHandler from './handler';
-import albumsRoutes from './routes';
+import AlbumsHandler from './handler.js';
+import albumsRoutes from './routes.js';
 
 export default {
   name: 'albums',

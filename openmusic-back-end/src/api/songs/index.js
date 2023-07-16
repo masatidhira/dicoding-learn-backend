@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-spacing */
-import SongsHandler from './handler';
-import routes from './routes';
+import SongsHandler from './handler.js';
+import routes from './routes.js';
 
 export default {
   name: 'songs',

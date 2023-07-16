@@ -3,11 +3,13 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
+
 import { nanoid } from 'nanoid';
-import { mapDBToModel } from '../utils';
-import InvariantError from '../exceptions/InvariantError';
-import NotFoundError from '../exceptions/NotFoundError';
+import mapSongsDBToModel from '../utils/mapSongsDBToModel.js';
+import InvariantError from '../exceptions/InvariantError.js';
+import NotFoundError from '../exceptions/NotFoundError.js';
 
 class SongsServices {
   constructor() {
@@ -60,7 +62,7 @@ class SongsServices {
       throw new NotFoundError('Song not found');
     }
 
-    return result.rows.map(mapDBToModel)[0];
+    return result.rows.map(mapSongsDBToModel)[0];
   }
 
   async editSongById(id, { title, year, performer, genre, duration }) {

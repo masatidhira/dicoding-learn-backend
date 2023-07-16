@@ -4,15 +4,15 @@ dotenv.config();
 
 import Hapi from '@hapi/hapi';
 
-import AlbumsPlugin from './api/albums';
-import AlbumsService from './services/AlbumsServices';
-import AlbumsValidator from './validators/Albums';
+import AlbumsPlugin from './api/albums/index.js';
+import AlbumsService from './services/AlbumsServices.js';
+import AlbumsValidator from './validators/Albums/index.js';
 
-import SongsPlugin from './api/songs';
-import SongsService from './services/SongsServices';
-import SongsValidator from './validators/Songs';
+import SongsPlugin from './api/songs/index.js';
+import SongsService from './services/SongsServices.js';
+import SongsValidator from './validators/Songs/index.js';
 
-import ClientError from './exceptions/ClientError';
+import ClientError from './exceptions/ClientError.js';
 
 const init = async () => {
   const server = Hapi.server({

@@ -3,11 +3,13 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
+
 import { nanoid } from 'nanoid';
-import { mapAlbumsDBToModel } from '../utils';
-import InvariantError from '../exceptions/InvariantError';
-import NotFoundError from '../exceptions/NotFoundError';
+import mapAlbumsDBToModel from '../utils/mapAlbumsDBToModel.js';
+import InvariantError from '../exceptions/InvariantError.js';
+import NotFoundError from '../exceptions/NotFoundError.js';
 
 class AlbumsServices {
   constructor() {
