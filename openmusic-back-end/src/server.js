@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-spacing */
 require('dotenv').config();
 
 const Hapi = require('@hapi/hapi');
@@ -37,6 +38,34 @@ const init = async () => {
       },
     },
   ]);
+
+  server.ext('onPreResponse', (request, h) => {
+    const { response } = request;
+
+    if (response instanceof Error) {
+      if (error instanceof ClientError) {
+        const newResponse = h.response({
+          status: 'fail',
+          message: error.message,
+        });
+        newResponse.code(error.statusCode);
+        return newResponse;
+      }
+
+      if (!response.isServer) {
+        return h.continue;
+      }
+
+      const newResponse = h.response({
+        status: 'error',
+        message: 'Server Error',
+      });
+      newResponse.code(500);
+      return newResponse;
+    }
+
+    return h.continue;
+  });
 
   await server.start();
   console.log(`Server running on port: ${server.info.uri}`);
