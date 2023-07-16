@@ -11,6 +11,8 @@ const SongsPlugin = require('./api/songs');
 const SongsService = require('./services/SongsServices');
 const SongsValidator = require('./validators/Songs');
 
+const ClientError = require('./exceptions/ClientError');
+
 const init = async () => {
   const server = Hapi.server({
     port: process.env.PORT,
