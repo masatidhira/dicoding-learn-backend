@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-spacing */
-const SongPayloadSchema = require('./schema');
-const InvariantError = require('../../exceptions/InvariantError');
+import SongPayloadSchema from './schema';
+import InvariantError from '../../exceptions/InvariantError';
 
 const SongValidator = {
   validateSongPayload: (payload) => {
@@ -11,4 +11,4 @@ const SongValidator = {
   },
 };
 
-module.exports = SongValidator;
+export default SongValidator;

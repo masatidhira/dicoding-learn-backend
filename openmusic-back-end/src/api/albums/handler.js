@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable require-jsdoc */
-const autoBind = require('auto-bind');
+import autoBind from 'auto-bind';
 
 class AlbumsHandler {
   constructor(service, validator) {
@@ -61,4 +61,4 @@ class AlbumsHandler {
   }
 }
 
-module.exports = AlbumsHandler;
+export default AlbumsHandler;

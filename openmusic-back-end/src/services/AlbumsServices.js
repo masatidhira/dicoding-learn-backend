@@ -3,11 +3,11 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
-const { Pool } = require('pg');
-const { nanoid } = require('nanoid');
-const { mapAlbumsDBToModel } = require('../utils');
-const InvariantError = require('../exceptions/InvariantError');
-const NotFoundError = require('../exceptions/NotFoundError');
+import { Pool } from 'pg';
+import { nanoid } from 'nanoid';
+import { mapAlbumsDBToModel } from '../utils';
+import InvariantError from '../exceptions/InvariantError';
+import NotFoundError from '../exceptions/NotFoundError';
 
 class AlbumsServices {
   constructor() {
@@ -73,4 +73,4 @@ class AlbumsServices {
   }
 }
 
-module.exports = AlbumsServices;
+export default AlbumsServices;

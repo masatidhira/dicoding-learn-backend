@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-spacing */
-const AlbumPayloadSchema = require('./schema');
-const InvariantError = require('../../exceptions/InvariantError');
+import AlbumPayloadSchema from './schema';
+import InvariantError from '../../exceptions/InvariantError';
 
 const AlbumValidator = {
   validateAlbumPayload: (payload) => {
@@ -11,4 +11,4 @@ const AlbumValidator = {
   },
 };
 
-module.exports = AlbumValidator;
+export default AlbumValidator;

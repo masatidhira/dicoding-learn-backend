@@ -1,10 +1,14 @@
 {
   "name": "openmusic-back-end",
   "version": "1.0.0",
+  "type": "module",
   "description": "Back-end for Open Music App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./src/server.js",
+    "prod": "NODE_ENV=production node ./src/server.js",
+    "lint": "eslint ./src",
+    "migrate": "node-pg-migrate"
   },
   "keywords": [
     "open-music",
@@ -13,8 +17,9 @@
   "author": "masatidhira",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.43.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint": "^8.45.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^3.0.1"
   },
   "dependencies": {
     "@hapi/hapi": "^21.3.2",
@@ -22,6 +27,7 @@
     "dotenv": "^16.3.1",
     "joi": "^17.9.2",
     "nanoid": "^4.0.2",
+    "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.1"
   }
 }

@@ -1,8 +1,8 @@
 /* eslint-disable object-curly-spacing */
-const AlbumsHandler = require('./handler');
-const albumsRoutes = require('./routes');
+import AlbumsHandler from './handler';
+import albumsRoutes from './routes';
 
-module.exports = {
+export default {
   name: 'albums',
   version: '1.0.0',
   register: async (server, { service, validator }) => {

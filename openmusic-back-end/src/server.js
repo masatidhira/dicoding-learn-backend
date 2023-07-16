@@ -1,17 +1,18 @@
 /* eslint-disable object-curly-spacing */
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const Hapi = require('@hapi/hapi');
+import Hapi from '@hapi/hapi';
 
-const AlbumsPlugin = require('./api/albums');
-const AlbumsService = require('./services/AlbumsServices');
-const AlbumsValidator = require('./validators/Albums');
+import AlbumsPlugin from './api/albums';
+import AlbumsService from './services/AlbumsServices';
+import AlbumsValidator from './validators/Albums';
 
-const SongsPlugin = require('./api/songs');
-const SongsService = require('./services/SongsServices');
-const SongsValidator = require('./validators/Songs');
+import SongsPlugin from './api/songs';
+import SongsService from './services/SongsServices';
+import SongsValidator from './validators/Songs';
 
-const ClientError = require('./exceptions/ClientError');
+import ClientError from './exceptions/ClientError';
 
 const init = async () => {
   const server = Hapi.server({
